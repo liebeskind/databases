@@ -1,13 +1,39 @@
-CREATE DATABASE chat;
+CREATE DATABASE CHATSERVER;
 
-USE chat;
+USE CHATSERVER;
 
-CREATE TABLE messages (
- /* Describe your table here.*/
+create table users (
+  id         INT auto_increment,
+  username   varchar(250),
+  primary key(id)
 );
 
-/* You can also create more tables, if you need them... */
+create table users_messages (
+  id_Users    INT,
+  id_Messages INT,
+  primary key(id_Users)
+);
 
-/*  Execute this file from the command line by typing:
- *    mysql < schema.sql
- *  to create the database and the tables.*/
+create table messages (
+  id         INT auto_increment,
+  message    varchar(1000),
+  primary key(id)
+);
+
+create table rooms_messages (
+  id_Rooms    INT,
+  id_Messages INT,
+  primary key(id_Rooms)
+);
+
+create table rooms (
+  id         INT auto_increment,
+  roomname   varchar(250),
+  primary key(id)
+);
+
+create table rooms_users (
+  id_Rooms   INT,
+  id_Users   INT,
+  primary key(id_Rooms)
+);
