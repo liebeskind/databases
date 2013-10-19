@@ -2,38 +2,63 @@ CREATE DATABASE CHATSERVER;
 
 USE CHATSERVER;
 
-create table users (
-  id         INT auto_increment,
-  username   varchar(250),
-  primary key(id)
+
+
+
+
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'users'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `users`;
+    
+CREATE TABLE `users` (
+  `id` TINYINT AUTO_INCREMENT,
+  `username` varchar(250),
+  PRIMARY KEY (`id`)
 );
 
-create table users_messages (
-  id_Users    INT,
-  id_Messages INT,
-  primary key(id_Users)
+-- ---
+-- Table 'messages'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `messages`;
+    
+CREATE TABLE `messages` (
+  `id` TINYINT AUTO_INCREMENT,
+  `message` varchar(1000),
+  `id_Users` TINYINT,
+  PRIMARY KEY (`id`)
 );
 
-create table messages (
-  id         INT auto_increment,
-  message    varchar(1000),
-  primary key(id)
-);
+-- ---
+-- Foreign Keys 
+-- ---
 
-create table rooms_messages (
-  id_Rooms    INT,
-  id_Messages INT,
-  primary key(id_Rooms)
-);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (id_Users) REFERENCES `users` (`id`);
 
-create table rooms (
-  id         INT auto_increment,
-  roomname   varchar(250),
-  primary key(id)
-);
+-- ---
+-- Table Properties
+-- ---
 
-create table rooms_users (
-  id_Rooms   INT,
-  id_Users   INT,
-  primary key(id_Rooms)
-);
+-- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `messages` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `users` (`id`,`username`) VALUES
+-- ('','');
+-- INSERT INTO `messages` (`id`,`message`,`id_Users`) VALUES
+-- ('','','','');
+
